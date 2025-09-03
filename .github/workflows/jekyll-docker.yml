@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Setup for HTML Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #4fc3f7;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h2 i {
+            margin-right: 10px;
+            color: #4fc3f7;
+        }
+        
+        .card h3 {
+            color: #283593;
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3 i {
+            margin-right: 10px;
+            color: #4fc3f7;
+            font-size: 1.2rem;
+        }
+        
+        pre {
+            background: #2b303b;
+            color: #dee2e6;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 20px 0;
+            border-left: 4px solid #4fc3f7;
+        }
+        
+        code {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .important {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+            margin: 25px 0;
+        }
+        
+        .note {
+            background: #e8f5e9;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+            margin: 20px 0;
+        }
+        
+        .button {
+            display: inline-block;
+            background: #4fc3f7;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .button:hover {
+            background: #29b6f6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(41, 182, 246, 0.4);
+        }
+        
+        .copy-btn {
+            background: #4fc3f7;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #29b6f6;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: #1a237e;
+            color: white;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-code"></i> GitHub .gitignore for HTML Projects</h1>
+            <p>How to set up your repository when there's no HTML option in .gitignore</p>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <h2><i class="fas fa-question-circle"></i> The Problem</h2>
+                <p>When creating a GitHub repository, you see the ".gitignore" dropdown but it doesn't have an "HTML" option.</p>
+                
+                <div class="important">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Why this happens</h3>
+                    <p>GitHub provides .gitignore templates for common frameworks and languages, but doesn't have a specific one for basic HTML projects.</p>
+                </div>
+                
+                <h3><i class="fas fa-lightbulb"></i> The Solution</h3>
+                <p>You have two options:</p>
+                <ol>
+                    <li><strong>Select "None"</strong> and add a .gitignore file later</li>
+                    <li><strong>Choose a similar option</strong> like "Node" or "VisualStudio" and modify it</li>
+                </ol>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-file-code"></i> Creating .gitignore</h2>
+                <p>Create a file named <code>.gitignore</code> in your project root with this content:</p>
+                
+                <pre><code># Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Build output
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/
+
+# Temporary folders
+tmp/
+temp/</code></pre>
+                
+                <button class="copy-btn" onclick="copyToClipboard()">Copy .gitignore content</button>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-list-alt"></i> What to Include</h2>
+                
+                <h3><i class="fas fa-ban"></i> Files to ignore:</h3>
+                <ul>
+                    <li>OS-specific files (like .DS_Store on Mac)</li>
+                    <li>Editor configuration folders (.vscode, .idea)</li>
+                    <li>Environment files (.env, config files with passwords)</li>
+                    <li>Build outputs (dist/, build/)</li>
+                    <li>Log files and temporary files</li>
+                </ul>
+                
+                <div class="note">
+                    <h3><i class="fas fa-check-circle"></i> Files to keep:</h3>
+                    <ul>
+                        <li>Your HTML, CSS, and JavaScript files</li>
+                        <li>Images and assets for your website</li>
+                        <li>README.md file</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-directions"></i> Step-by-Step Guide</h2>
+                
+                <h3><i class="fas fa-plus-circle"></i> 1. Create your repository</h3>
+                <ul>
+                    <li>Go to GitHub and create a new repository</li>
+                    <li>Name it (e.g., "my-website")</li>
+                    <li>Select "Public" or "Private"</li>
+                    <li>In the ".gitignore" dropdown, select "None"</li>
+                </ul>
+                
+                <h3><i class="fas fa-file-medical"></i> 2. Create files locally</h3>
+                <ul>
+                    <li>Create your <code>index.html</code> file</li>
+                    <li>Create <code>.gitignore</code> with the content shown</li>
+                </ul>
+                
+                <h3><i class="fas fa-cloud-upload-alt"></i> 3. Upload to GitHub</h3>
+                <ul>
+                    <li>Drag and drop both files to your repository</li>
+                    <li>Or use Git commands if you're familiar with them</li>
+                </ul>
+                
+                <h3><i class="fas fa-tachometer-alt"></i> 4. Enable GitHub Pages</h3>
+                <ul>
+                    <li>Go to Settings → Pages</li>
+                    <li>Select "Deploy from a branch"</li>
+                    <li>Choose "main" branch and root folder</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h2>Ready to Create Your Website?</h2>
+            <p>Your site will be live at: https://username.github.io/repository-name</p>
+            <button class="button" onclick="showDeploymentGuide()">Show Deployment Guide</button>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const content = `# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Build output
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/
+
+# Temporary folders
+tmp/
+temp/`;
+            
+            navigator.clipboard.writeText(content).then(() => {
+                alert('.gitignore content copied to clipboard!');
+            });
+        }
+        
+        function showDeploymentGuide() {
+            alert('1. Create repository on GitHub\n2. Add index.html and .gitignore files\n3. Go to Settings → Pages\n4. Select "Deploy from branch" and choose "main" branch\n5. Your site will be live in a few minutes!');
+        }
+        
+        // Add syntax highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('pre code').forEach((block) => {
+                const text = block.textContent;
+                // Simple highlighting for comments
+                block.innerHTML = text.replace(/#(.*)/g, '<span style="color: #8e9aaf;">#$1</span>');
+            });
+        });
+    </script>
+</body>
+</html>: Jekyll site CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the site in the jekyll/builder container
+      run: |
+        docker run \
+        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
